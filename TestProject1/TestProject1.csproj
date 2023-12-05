@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Test.TvMaze\TvMaze.Project.csproj" />
+    <ProjectReference Include="..\Test.TvMaze\TvMaze.Project.csproj" />
   </ItemGroup>
 
 </Project>

@@ -24,7 +24,6 @@ public class TvMazeControllerTest
     public void GetShowTest()
     {
         // Arrange
-
         int showId = 1;
         // Act
         IHttpActionResult result = _controller.GetShowById(showId);
