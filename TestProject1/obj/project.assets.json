@@ -2593,6 +2593,15 @@
         "runtime": {
           "lib/net6.0/ZstdSharp.dll": {}
         }
+      },
+      "TvMaze.Project/1.0.0": {
+        "type": "project",
+        "compile": {
+          "bin/placeholder/TvMaze.Project.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TvMaze.Project.dll": {}
+        }
       }
     }
   },
@@ -7531,16 +7540,21 @@
         "zstdsharp.port.0.6.2.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "TvMaze.Project/1.0.0": {
+      "type": "project",
+      "path": "../Test.TvMaze/TvMaze.Project.csproj",
+      "msbuildProject": "../Test.TvMaze/TvMaze.Project.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj",
       "Microsoft.AspNet.WebApi.Core >= 5.2.9",
       "Microsoft.AspNetCore.Mvc.Core >= 2.2.5",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
       "MongoDB.Driver >= 2.22.0",
       "Moq >= 4.20.70",
+      "TvMaze.Project >= 1.0.0",
       "coverlet.collector >= 3.2.0",
       "xunit >= 2.4.2",
       "xunit.runner.visualstudio >= 2.4.5"
@@ -7573,8 +7587,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj": {
-              "projectPath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj"
+            "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj": {
+              "projectPath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj"
             }
           }
         }
@@ -7647,15 +7661,6 @@
     }
   },
   "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Non è possibile trovare le informazioni sul progetto per 'C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj'. Se si usa Visual Studio, questo problema può dipendere dal fatto che il caricamento del progetto è stato annullato o che il progetto non fa parte della soluzione corrente, di conseguenza è necessario eseguire un ripristino dalla riga di comando. In caso contrario, il file di progetto potrebbe non essere valido oppure non includere le destinazioni necessarie per il ripristino.",
-      "libraryId": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",

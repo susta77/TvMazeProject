@@ -4,6 +4,21 @@
     "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\TestProject1\\TestProject1.csproj": {}
   },
   "projects": {
+    "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj",
+        "projectName": "TvMaze.Project",
+        "projectPath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj",
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {}
+      }
+    },
     "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\TestProject1\\TestProject1.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -28,8 +43,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj": {
-                "projectPath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj"
+              "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj": {
+                "projectPath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\Test.TvMaze\\TvMaze.Project.csproj"
               }
             }
           }

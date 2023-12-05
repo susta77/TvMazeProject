@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "K9olIVo3PZYtm/i2oO2wFNzKtFsPZIHQdZWOslo8U1BUzkXznE8drZrO7rKYDDgnZzEjlmgvHBTGcFZOfPRO4A==",
-  "success": false,
+  "dgSpecHash": "Vi3Q1KGE4tQfNQw/h1KpWP5MsDvU3LdVirpqCLQya9nR+Qbp5KTWRfLV5MRRlsla5/DxKc215tUXYZei4qzt+g==",
+  "success": true,
   "projectFilePath": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\TvMaze\\TestProject1\\TestProject1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Overdata\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
@@ -147,15 +147,6 @@
     "C:\\Users\\Overdata\\.nuget\\packages\\zstdsharp.port\\0.6.2\\zstdsharp.port.0.6.2.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "NU1105",
-      "level": "Error",
-      "message": "Non è possibile trovare le informazioni sul progetto per 'C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj'. Se si usa Visual Studio, questo problema può dipendere dal fatto che il caricamento del progetto è stato annullato o che il progetto non fa parte della soluzione corrente, di conseguenza è necessario eseguire un ripristino dalla riga di comando. In caso contrario, il file di progetto potrebbe non essere valido oppure non includere le destinazioni necessarie per il ripristino.",
-      "libraryId": "C:\\Users\\Overdata\\Desktop\\Appunti\\Rep_git_TvMaze_Ver_1\\TvMaze-master\\Test.TvMaze\\TvMaze.Project.csproj",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
     {
       "code": "NU1701",
       "level": "Warning",
