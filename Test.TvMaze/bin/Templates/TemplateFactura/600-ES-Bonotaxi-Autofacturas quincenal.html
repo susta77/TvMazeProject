@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<style>
+body {
+    font-size: 14px;
+    font-family: trebuchet ms;
+}
+         table {
+         width:600px;
+         border-spacing: 0px;
+        }
+#relacionfacturas {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  
+}
+
+#relacionfacturas td, #relacionfacturas th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+#relacionfacturas th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+}
+</style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="bt_row bt_margin_top_25">
+        [NOMBRECOLABORADOR]
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Apreciado Colaborador,
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Adjuntamos su factura de los servicios realizados del <span>[IniMes]</span> al <span>[FinMes]</span> de <span>[Month]</span> de <span>[year]</span>.<br />
+        Factura realizada a través de nuestro sistema AUTOS.
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        <b style="color:#000;">AUTOFACTURA ADJUNTA:</b>
+
+    </div>
+
+    <table id="relacionfacturas" style="margin-top:14px;">
+        <tr>
+            <th>Nº Factura3</th>
+            <th>Fecha<br /> Factura</th>
+            <th>Vencimiento</th>
+            <th>Importe <br />   IVA Incl.</th>
+        </tr>
+        [tableFacturas]
+    </table>
+    <div class="bt_row" style="margin-top:14px;margin-bottom:14px;">
+        Un cordial saludo.
+    </div>
+    [footer]
+
+</body>
+</html>

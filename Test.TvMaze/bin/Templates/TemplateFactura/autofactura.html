@@ -1,0 +1,191 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="generator" content="PSPad editor, www.pspad.com">
+    <link href="https://fonts.googleapis.com/css?family=Space+Mono" rel="stylesheet">
+    <link href="iconfont/material-icons.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+    <title>BonoTaxi</title>
+    <style>
+        [cssStyle]
+        table {border-spacing: 0px;border: 0;}
+        tr, td {border: 0px;}
+        .bt_col_8 {width: 88%; }
+
+    </style>
+</head>
+<body>
+    <div class=" bt_padding_tarjeta">
+        <div class="bt_txt_tarjeta_trebuchet">
+            <div class="bt_row bt_margin_bottom_50">
+
+                <div class="bt_col_4">
+                    <h1>[titleFactura] [NUMEROFACTURA]</h1>
+                </div>
+            </div>
+            <div class="bt_row bt_margin_bottom_70">
+                <div class="bt_col_4">
+                    <div class="bt_row">
+                        <ul>
+                            <li>Proveedor:</li>
+                            <li><b>[NOMBRECOLAB]</b></li>
+                            <li>[DIRECCION]</li>
+                            <li>[CPPOBLACION]</li>
+                            <li>[NIFCOLAB]</li>
+                            <li>[IDCOLAB]</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bt_col_2"></div>
+                <div class="bt_col_4">
+                    <ul>
+                        <li>Cliente:</li>
+                        <li><b>[BNTX1]</b></li>
+                        <li>[BNTX2]</li>
+                        <li>[BNTX3]</li>
+                        <li>[BNTX4]</li>
+                        <!--<li>[BNTX5]</li>-->
+                    </ul>
+                </div>
+            </div>
+            <div class=" [bodyImgBorrador] bt_row bt_col_96">
+                <div class="bt_row bt_margin_bottom_70">
+                    <div class="bt_col_2 bt_display_flex bt_align_center bt_border_gris">
+                        <div class="bt_row" style="padding: 15px 0px 15px 0px;">
+                            Nº Factura:
+                        </div>
+                        <div class="bt_row" style="padding:15px 0 15px 0;border-top:1px solid #000;">
+                            [NUMEROFACTURA]
+                        </div>
+                    </div>
+                    <div class="bt_col_2 bt_display_flex bt_align_center  bt_border_gris">
+                        <div class="bt_row"  style="padding: 15px 0px 15px 0px;">
+                            Fecha:
+                        </div>
+                        <div class="bt_row" style="padding:15px 0 15px 0;border-top:1px solid #000;">
+                            [FECHAFACTURA]
+                        </div>
+                    </div>
+                    <div class="bt_col_2  bt_display_flex bt_align_center  bt_border_gris">
+                        <div class="bt_row"  style="padding: 15px 0px 15px 0px;"">
+                            Vencimiento:
+                        </div>
+                        <div class="bt_row" style="padding:15px 0 15px 0;border-top:1px solid #000;">
+                            [FECHAVENCIMIENTO]
+                        </div>
+                    </div>
+                    <div class="bt_col_2 bt_display_flex bt_align_center  bt_border_gris">
+                        <div class="bt_row"  style="padding: 15px 0px 15px 0px;">
+                            Proyecto:
+                        </div>
+                        <div class="bt_row" style="padding:15px 0 15px 0;border-top:1px solid #000;">
+                            [PROYECTO]
+                        </div>
+                    </div>
+                    <div class="bt_col_2 bt_align_center  bt_border_gris">
+                        <div class="bt_row"  style="padding: 15px 0px 15px 0px;"">
+                            Forma de Pago:
+                        </div>
+                        <div class="bt_row" style="padding:15px 0 15px 0;border-top:1px solid #000;">
+                            [CODFORMAPAGO]
+                        </div>
+                    </div>
+                </div>
+                <div class="bt_row bt_border_bottom_2_000">
+                    <div class="bt_col_02"></div>
+                    <div class="bt_col_78">
+                        <h3>Concepto</h3>
+                    </div>
+                    <div class="bt_col_2 bt_align_right ">
+                        <h3>Importe</h3>
+                    </div>
+                </div>
+                <div style="min-height:400px;">
+                    <div class="bt_row bt_margin_top_13 bt_margin_bottom_13">
+                        <div class="bt_col_02"></div>
+                        <div class="bt_col_78">
+                            [CONCEPTO]
+                        </div>
+                        <div class="bt_col_2 bt_align_right">
+                            [IMPORTE_TOTAL_SERVICIOS] €
+                        </div>
+                    </div>
+                 
+                
+                            [detallesConceptoFactura]
+                    
+                            [denominaciones]
+                       
+                    
+                </div>
+                <div class="bt_row bt_margin_top_13 bt_margin_bottom_70">
+
+                    <div class="bt_col_3 bt_texto_literal" style="padding-top:85px;">
+                        Pág. 1/1
+                    </div>
+                    <div class="bt_col_2 bt_texto_literal  bt_padding_top_19 ">
+                    </div>
+                    <div class="bt_col_5  bt_texto_literal" style="float: right;">
+
+                        <div class="bt_row">
+
+                            <div class="bt_col_6 bt_align_left">
+                                Servicios de Transporte:
+                            </div>
+                            <div class="bt_col_4 bt_align_right">
+                                [IMPORTE_TOTAL_SERVICIOS] &#8364;
+                            </div>
+                        </div>
+
+                        <div class="bt_row bt_padding_top_19">
+
+                            <div class="bt_col_6 bt_align_left">
+                                Total Base Imponible:
+                            </div>
+                            <div class="bt_col_4 bt_align_right">
+                                [BASE_IMPONIBLE] &#8364;
+                            </div>
+                        </div>
+                        <div class="bt_row">
+                            [descuentos]
+                        </div>
+                        <div class="bt_row bt_margin_top_1">
+
+                            <div class="bt_col_6 bt_align_left">
+                                Impuestos [IVA] %:
+                            </div>
+                            <div class="bt_col_4 bt_align_right">
+                                [BASE_IVA] &#8364;
+                            </div>
+                        </div>
+
+                        <div class="bt_row">
+
+                            <div class="bt_col_6 bt_align_left">
+                                <b>IMPORTE TOTAL:</b>
+                            </div>
+                            <div class="bt_col_4 bt_align_right">
+                                [IMPORTE_TOTAL] &#8364;
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <p>> El importe que figura en el total factura será ingresado por el cliente en la cuenta del proveedor en la fecha indicada en el vencimiento</p>
+                <div class="bt_row bt_margin_top_10">
+                    <div class="bt_col_3 bt_border_gris bt_align_center bt_padding_10" >
+                        Cuenta bancaria:
+                    </div>
+                    <div class="bt_col_7 bt_border_gris bt_align_center bt_padding_10" >
+                        [NUM_CUENTA]
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

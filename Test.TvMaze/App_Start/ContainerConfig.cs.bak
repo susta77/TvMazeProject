@@ -1,0 +1,218 @@
+﻿using Autofac;
+using Autofac.Extras.Quartz;
+using Autofac.Integration.WebApi;
+using AutoMapper;
+using Bogem.BusinessLogic.Contracts;
+using Bogem.BusinessLogic.Contracts.Config;
+using Bogem.BusinessLogic.GestionFicheros.Contracts;
+using Bogem.BusinessLogic.GestionFicheros.Implementations;
+using Bogem.BusinessLogic.Hedyla.Mappers;
+using Bogem.BusinessLogic.Hedyla.Utils;
+using Bogem.BusinessLogic.Implementations;
+using Bogem.BusinessLogic.Implementations.Config;
+using Bogem.Crosscutting.Repository;
+using Bogem.DataAccess.DAOs.Contracts;
+using Bogem.DataAccess.DAOs.Repository;
+using Bogem.DataAccess.GestionFicheros;
+using Bogem.DataAccess.RutasTarifas;
+using Bogem.DataAccess.TraspasarUsuario;
+using Bogem.ExternalAPIs.Hedyla.Contracts;
+using Bogem.ExternalAPIs.Hedyla.Implementations;
+using Bogem.ExternalAPIs.Hedyla.Models;
+using Bogem.ExternalAPIs.VoiceGen.Contracts;
+using Bogem.ExternalAPIs.VoiceGen.Implementations;
+using Bogem.Michelin.Contracts;
+using Bogem.Michelin.Implementations;
+using JobProgramado;
+using Quartz;
+using System;
+using System.Collections.Specialized;
+using System.Linq;
+using System.Reflection;
+using System.Web.Compilation;
+using System.Web.Configuration;
+
+namespace Bogem.Hedyla.App_Start
+{
+    public static class ContainerConfig
+    {
+        public static IContainer Configure()
+        {
+            var builder = new ContainerBuilder();
+
+            // Registrar controladores Web API.
+            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+
+            // Registrar clases BL, DAO, etc.
+            RegisterBusinessLogicAndDataAccess(builder);
+
+            // Registrar trabajos y otros componentes de Quartz.
+            RegisterScheduler(builder);
+
+            // Construye el contenedor.
+            IContainer container = builder.Build();
+
+            // Configura Quartz.
+            ConfigureScheduler(container);
+
+            // Establece el DependencyResolver para Web API.
+            return container;
+        }
+
+        private static void RegisterBusinessLogicAndDataAccess(ContainerBuilder builder)
+        {
+            var assemblies = BuildManager.GetReferencedAssemblies().Cast<Assembly>().ToArray();
+            builder.RegisterAssemblyTypes(assemblies)
+                .Where(t => t.Name.EndsWith("BL"))
+                .AsImplementedInterfaces()
+                .InstancePerRequest();
+
+            //InstancePerLifetimeScope
+            builder.RegisterAssemblyTypes(Assembly.Load("Bogem.DataAccess"))
+                .Where(t => t.Namespace.Contains("DAOs") && !t.Name.Contains("AbstractFactory"))
+                .As(t => t.GetInterfaces().FirstOrDefault(i => (i.Name == "I" + t.Name) && !t.Name.Contains("AbstractFactory")));
+
+            // Configura AutoMapper
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new HedylaProfile());
+                // Añadir otros perfiles
+            });
+
+            // Registrar IMapper con Autofac
+            var mapper = mapperConfig.CreateMapper();
+            builder.RegisterInstance(mapper).As<IMapper>().SingleInstance();
+
+            /*builder.RegisterType<BONOTAXIEntities>().InstancePerRequest();*/ // Si da errores al acceder bbdd eliminar
+            builder.RegisterType<Bogem.DataAccess.Servicios.ModificarServicio>().As<Bogem.DataAccess.Servicios.IModificarServicio>();
+            builder.RegisterType<Bogem.DataAccess.Servicios.DividirServicio>().As<Bogem.DataAccess.Servicios.IDividirServicio>();
+            builder.RegisterType<Bogem.DataAccess.Servicios.AltaServicio>().As<Bogem.DataAccess.Servicios.IAltaServicio>();
+            builder.RegisterType<Bogem.DataAccess.Servicios.ServicioHelp>().As<Bogem.DataAccess.Servicios.IServicioHelp>();
+            builder.RegisterType<Bogem.DataAccess.AltaUsuarios.GeneradorUsuarios>().As<Bogem.DataAccess.AltaUsuarios.IGeneradorUsuarios>();
+            builder.RegisterType<Bogem.DataAccess.AltaUsuarios.WizardReset>().As<Bogem.DataAccess.AltaUsuarios.IWizardReset>();
+            builder.RegisterType<Bogem.DataAccess.RutasTarifas.DuplicaRutasTarifa>().As<IDuplicaRutasTarifa>();
+            builder.RegisterType<Bogem.DataAccess.RutasTarifas.EliminarRutasTarifas>().As<IEliminarRutasTarifas>();
+            builder.RegisterType<Bogem.DataAccess.RutasTarifas.CargaTarifaGeneral>().As<ICargaTarifaGeneral>();
+            builder.RegisterType<Bogem.DataAccess.GestionFicheros.Talonarios>().As<ITalonarios>();
+            builder.RegisterType<Bogem.DataAccess.DAOs.EmailDAO>().As<IEmailDAO>();
+            builder.RegisterType<ConfigEmailBL>().As<IConfigEmailBL>();
+            builder.RegisterType<GestorFicherosBL>().As<IGestorFicherosBL>();
+            builder.RegisterType<ConfigParametrosBL>().As<IConfigParametrosBL>();
+            builder.RegisterType<TraspasoUsuarioDAO>().As<ITraspasoUsuarioDAO>();
+            builder.RegisterType<EnvioTarjetasUsuarioJOB>().As<IEnvioTarjetasUsuarioJOB>();
+            builder.RegisterType<EnvioAvisosGlaxoTipo4JOB>().As<IEnvioAvisosGlaxoTipo4JOB>();
+            builder.RegisterType<HedylaUtils>().As<IHedylaUtils>();
+            builder.RegisterType<ApiService>().As<IApiService>();
+            builder.RegisterType<Bogem.ExternalAPIs.Hedyla.Secutiry.JwtService>().As<Bogem.ExternalAPIs.Hedyla.Contracts.IJwtService>();
+            builder.RegisterType<ApiHedyla>().As<IApiHedyla>();
+
+            builder.RegisterType<Itinerary>().As<IItinerary>();
+            builder.RegisterType<VoiceGen>().As<IVoiceGen>();
+            builder.RegisterGeneric(typeof(Repository<>)).As(typeof(IRepository<>)).InstancePerRequest();
+
+            //builder.RegisterType<EnvioEmailsJOB>().As<IEnvioEmailsJOB>().InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(assemblies)
+                .Where(t => t.Name.EndsWith("JOB"))
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
+        }
+
+        private static void RegisterScheduler(ContainerBuilder builder)
+        {
+            var schedulerConfig = new NameValueCollection {
+              {"quartz.threadPool.threadCount", "3"},
+              {"quartz.scheduler.threadName", "MyScheduler"}
+             };
+            builder.RegisterModule(new QuartzAutofacFactoryModule
+            {
+                ConfigurationProvider = c => schedulerConfig
+            });
+            builder.RegisterModule(new QuartzAutofacJobsModule(typeof(JobProgramado.JobSche).Assembly));
+            builder.RegisterModule(new QuartzAutofacJobsModule(typeof(JobProgramado.EmailJobSche).Assembly));
+            builder.RegisterModule(new QuartzAutofacJobsModule(typeof(JobProgramado.TarjetasUsuarioJobSche).Assembly));
+            builder.RegisterModule(new QuartzAutofacJobsModule(typeof(JobProgramado.GeneracionEmailsJobSche).Assembly));
+            builder.RegisterModule(new QuartzAutofacJobsModule(typeof(JobProgramado.AvisosGlaxoTipo4JobSche).Assembly));
+        }
+
+        private static void ConfigureScheduler(IContainer container)
+        {
+            IScheduler sched = container.Resolve<IScheduler>();
+            sched.JobFactory = new AutofacJobFactoryMe(container);
+            sched.Start();
+
+            var activarEnvioMail = Convert.ToBoolean(WebConfigurationManager.AppSettings["enviarEmail"]);
+            if (activarEnvioMail)
+            {
+                IEmailDAO _envioEmail = container.Resolve<IEmailDAO>();
+                var minutosTotales = _envioEmail.minutesToSendMail(1);
+                TimeSpan span = TimeSpan.FromMinutes((double)minutosTotales);
+
+                int horas = span.Hours;
+                int minutos = span.Minutes;
+                int segundos = span.Seconds;
+
+                // Job Envío Emails
+                IJobDetail jobEmail = JobBuilder.Create<EmailJobSche>()
+                    .WithIdentity("ScrapGoldRate2")
+                    .Build();
+
+                ITrigger triggerEmail = TriggerBuilder.Create()
+                    .WithIdentity("ScrapGoldRate2Trigger")
+                    .WithSimpleSchedule(x => x
+                        .RepeatForever()
+                        .WithInterval(new TimeSpan(horas, minutos, segundos))
+                     )
+                    .StartNow()
+                    .Build();
+                sched.ScheduleJob(jobEmail, triggerEmail);
+
+
+                // Job Tarjetas Usuarios
+                IJobDetail jobTargetasUsuario = JobBuilder.Create<TarjetasUsuarioJobSche>()
+              .WithIdentity("ScrapGoldRate3")
+              .Build();
+
+                ITrigger triggerJobTargetasUsuario = TriggerBuilder.Create()
+                    .WithIdentity("ScrapGoldRate3Trigger")
+                    .WithSimpleSchedule(x => x
+                        .RepeatForever()
+                        .WithInterval(new TimeSpan(0, 1, 0))
+                     )
+                    .StartNow()
+                    .Build();
+                sched.ScheduleJob(jobTargetasUsuario, triggerJobTargetasUsuario);
+
+                // Job Generación Emails
+                IJobDetail jobGeneracionEmails = JobBuilder.Create<GeneracionEmailsJobSche>()
+              .WithIdentity("ScrapGoldRate4")
+              .Build();
+
+                ITrigger triggerJobGeneracionEmails = TriggerBuilder.Create()
+                    .WithIdentity("ScrapGoldRate4Trigger")
+                    .WithSimpleSchedule(x => x
+                        .RepeatForever()
+                        .WithInterval(new TimeSpan(0, 1, 0))
+                     )
+                    .StartNow()
+                    .Build();
+                sched.ScheduleJob(jobGeneracionEmails, triggerJobGeneracionEmails);
+
+                IJobDetail jobAvisosGlaxoTipo4 = JobBuilder.Create<AvisosGlaxoTipo4JobSche>()
+              .WithIdentity("ScrapGoldRate5")
+              .Build();
+
+                ITrigger triggerJobAvisosGlaxoTipo4 = TriggerBuilder.Create()
+                    .WithIdentity("ScrapGoldRate5Trigger")
+                    .WithSimpleSchedule(x => x
+                        .RepeatForever()
+                        .WithInterval(new TimeSpan(0, 1, 0))
+                     )
+                    .StartNow()
+                    .Build();
+                sched.ScheduleJob(jobAvisosGlaxoTipo4, triggerJobAvisosGlaxoTipo4);
+
+            }
+        }
+    }
+}

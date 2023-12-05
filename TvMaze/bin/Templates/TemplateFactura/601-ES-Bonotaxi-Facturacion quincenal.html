@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: trebuchet ms;
+        }
+
+        table {
+            width: 600px;
+            border-spacing: 0px;
+        }
+
+        td, th {
+            padding: 0;
+            margin: 0;
+        }
+
+        #relacionfacturas {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+        }
+
+            #relacionfacturas th {
+                text-align: center;
+            }
+
+            #relacionfacturas td, #relacionfacturas th {
+                border: 1px solid #ddd;
+                padding: 5px;
+            }
+
+            #relacionfacturas th {
+                padding: 5px;
+            }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="bt_row bt_margin_top_25">
+        [ALIASCLIENTE]
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Apreciado cliente,
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Adjuntamos la facturación de los servicios realizados del <span>[startDay]</span> al <span>[endDay]</span> de <span>[year]</span>.</td>
+    </div>
+    <div class="bt_row" style="margin-top:14px;margin-bottom:14px;">
+        <b style="color:#000;">RELACIÓN DE LAS FACTURAS ADJUNTAS:</b>
+    </div>
+
+    <table id="relacionfacturas" style="margin-top:14px;">
+
+        <tr>
+            <th style="text-align:center;">Nº Factura</th>
+            <th style="text-align:center;">Fecha<br />Factura</th>
+            <th style="text-align:center;">Vencimiento</th>
+            <th style="text-align:center;">Importe <br />   IVA Incl.</th>
+            <th style="text-align:center;">Código<br /> Estudio</th>
+        </tr>
+        [tableFacturas]
+        <tr>
+            <th style="text-align:center; border-left:0px;border-bottom:0px;" colspan="2"></th>
+            <th style="text-align:center;">Total</th>
+            <th style="text-align:right;padding-right:5px;">[totalAmount]</th>
+            <th style="text-align:center;border-right:0px;border-bottom:0px"></th>
+
+        </tr>
+
+    </table>
+    <div class="bt_row" style="margin-top:14px;">
+        Esperando sea de su conformidad.
+    </div>
+    <div class="bt_row" style="margin-top:14px;margin-bottom:14px;">
+        Un cordial saludo.
+    </div>
+    [footer]
+
+
+</body>
+</html>

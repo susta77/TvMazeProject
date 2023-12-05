@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Untitled Document</title>
+    <style>
+        body {
+            font-size: 14px;
+            font-family: trebuchet ms;
+        }
+
+        table {
+            width:600px;
+            margin-top:14px;
+            border-spacing: 0px;
+        }
+        td, th {
+            padding: 0;
+            margin: 0;
+        }
+
+        #relacionfacturas {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+
+        }
+
+            #relacionfacturas td, #relacionfacturas th {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: center;
+            }
+
+            #relacionfacturas th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+            }
+    </style>
+</head>
+<body style="margin:0; padding:0;">
+    <div class="bt_row bt_margin_top_25">
+        [NOMBRECOLABORADOR]
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Apreciado Colaborador,
+    </div>
+    <div class="bt_row" style="margin-top:14px;">
+        Adjuntamos su factura de los servicios realizados del <span>[IniMes]</span> al <span>[FinMes]</span> de <span>[Month]</span> del año<span>[year]</span>.<br />
+        Factura realizada a través de nuestro sistema AUTOS.
+    </div>
+    <div class="bt_row" style="margin-top:14px;margin-bottom:14px;">
+        <b style="color:#000;">AUTOFACTURA ADJUNTA:</b>
+    </div>
+    <table id="relacionfacturas" style="margin-top:14px;">
+        <tr>
+            <th>Nº Factura</th>
+            <th>Fecha<br /> Factura</th>
+            <th>Vencimiento</th>
+            <th>Importe <br />   IVA Incl.</th>
+        </tr>
+        [tableFacturas]
+    </table>
+    <div class="bt_row" style="margin-top:14px;margin-bottom:14px;">
+        Un cordial saludo.
+    </div>
+    [footer]
+
+    <!--
+    <tr>
+        <td style="padding:5px 5px 5px 25px;"><img src="xCIDMYIMAGELOGOx" alt="Bonotaxi logo" style="width:270px;" /></td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#E75215;padding:10px;">Meritxell Ansuategui</td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#8c8c8c;padding:10px;"><i>Departamento de Gestión</i></td>
+    </tr>
+    <tr>
+        <td style="padding:10px;">
+            T. Servicios 902 222 171 - T. Emergencia 24 h. +34 625 784 966<br />
+            T. Administración 902 808 932 - T. Gestión 902 808 015 - T. Calidad 902 222 145
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:10px;">
+            gestion@bonotaxi.com - www.bonotaxi.com
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:10px;">
+            <i>A su servicio en todas las ciudades y aeropuertos</i>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding:10px;">
+            <img style="width:72px;" src="xCIDSGSLOGINx" />
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#8c8c8c;padding:10px;">
+            <img style="width:19px;margin-right:20px;" src="xCIDLOGOPINx" /><i>Por favor, antes de imprimir piense en el medio ambiente</i>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#8c8c8c;padding:10px;">
+            <p><i>El correo electrónico no permite garantizar la confidencialidad, integridad y correcta recepción de los mensajes. Si desea comunicarse por otro medio no dude en indicarlo. Los datos de contacto que facilite serán tratados por TAXI TRAVEL TICKET, S.L.U., el cuál es el responsable del tratamiento. El tratamiento tiene como finalidad principal dar respuesta a sus consultas y/o a la realización de un servicio. La base legal es el consentimiento que supone el envío del correo electrónico o bien el consentimiento previo otorgado por otros medios. Para más información <a href="http://www.bonotaxi.com/politica-de-privacidad" style="color:#8c8c8c;">http://www.bonotaxi.com/politica-de-privacidad</a>. Pueden ejercer sus derechos mediante carta remitida a: Responsable ARSOLP a C/ Plom, 5, p.5., 08038 Barcelona (Barcelona) o por correo electrónico a info@bonotaxi.com con el asunto “Referencia LOPD”. </i></p>
+            <p><i>Este correo electrónico puede contener información privada y/o confidencial y es exclusivamente para uso e información de la/las persona/personas o entidad/entidades a las que va dirigido. Está prohibida su copia, comunicación pública, distribución o envío a terceros y/o cualquier otro uso incluyendo la simple comunicación de su contenido a terceros. Si ha recibido este mensaje por error y usted no es el destinatario del mismo, por favor comuníquenoslo y elimine el original. </i></p>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#8c8c8c;padding:10px;">
+            <img style="width:19px;margin-right:20px;" src="xCIDLOGOPINx" /><i>Please, consider the environment before printing</i>
+        </td>
+    </tr>
+    <tr>
+        <td style="font-size:18px;color:#8c8c8c;padding:10px;">
+            <p><i>Sending an e-mail does not guarantee the confidentiality, integrity and correct reception of messages. If you wish to communicate by other means, do not hesitate to indicate it. The contact details provided by you will be handled by TAXI TRAVEL TICKET, S.L.U. who is responsible for the data handling. The main purpose of the handling is to answer your enquiries and/or to provide a service. The legal basis for this is the consent given after sending the e-mail or by prior consent given by other means. For more information <a href="http://www.bonotaxi.com/politica-de-privacidad" style="color:#8c8c8c;">http://www.bonotaxi.com/politica-de-privacidad</a>. You can exercise your rights by sending a letter to: Responsible ARSOLP a C/ Plom, 5, p.5., 08038 Barcelona (Barcelona) or via e-mail at info@bonotaxi.com with the subject "Reference LOPD". </i></p>
+            <p><i>This e-mail may contain private and/or confidential information and is for the exclusive use and information of the person(s) or entity(ties) to whom it is addressed. It is forbidden to copy, publicly communicate, distribute or send them to third parties and/or any other use including the simple communication of their content to third parties. If you have received this message by mistake and you do not happen to be the recipient, please let us know and delete the original copy.  </i></p>
+        </td>
+    </tr>-->
+
+
+</body>
+</html>
